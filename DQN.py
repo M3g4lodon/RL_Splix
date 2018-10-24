@@ -107,8 +107,8 @@ def main():
 
             if done:
                 break
-
-        duration = time.time() - start
+        end_trial=time.time()
+        duration = end_trial- start
         env.close()
         message=f"Trial {trial} : final score {info['score']} in {step+1} steps ({duration/(step+1):0.3f}s per step)"
         print(message)
@@ -117,7 +117,8 @@ def main():
         # Agent is trained outside observation, to make it quick
         dqn_agent.replay()  # internally iterates default (prediction) model
         dqn_agent.train_target_model()  # iterates target model
-
+        end_training =time.time()
+        print(f"Trial {trial} :Training took {end_training-end_trial:0.3f}s")
         dqn_agent.save_models()
 
 
