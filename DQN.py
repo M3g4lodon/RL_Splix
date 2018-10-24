@@ -102,7 +102,7 @@ def main():
             step_counter += 1
             action = dqn_agent.act(cur_state)
             new_state, reward, done, info = env.step(action)
-
+            dqn_agent.remember(cur_state, action, reward, new_state, done)
             cur_state = new_state
 
             if done:
